@@ -5,6 +5,7 @@ You need to instal another library on your arduino text editor before starting t
 - ArduinoJSON.h 
 - wire.h
 - ESP8266 or ESP32 library
+- instal "EspExceptionDecoder" (optional)
 
 Step about this project are :
 1. NodeMCU get data from API that it will be parsing it into array and deserialize it
