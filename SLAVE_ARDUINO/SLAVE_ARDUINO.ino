@@ -1,7 +1,6 @@
 #include <Wire.h>
 #include<EEPROM.h>
 
-byte nilai;
 bool mode1=true;
 bool mode2=false;
 bool on=LOW;
@@ -27,18 +26,18 @@ void loop() {
 void receiveEvent(int howMany) {
  while (0 <Wire.available()) {
     byte c = Wire.read();      /* receive byte as a character */
-    Serial.print(c);    /* print the character */
+    Serial.print(c);           /* print the character */
     
      pinMode(led, OUTPUT);
      digitalWrite(led,on);
-    //login
-     cekKeamanan(c, EEPROM.read(0));
+     //login
+     checkNumber(c, EEPROM.read(0)); //comparing data read in 'c' from NodeMCU with number that inside EEPROM on Arduino
      mode1=true;
   }
  Serial.println();            
 }
 
- void cekKeamanan(byte str, byte data){
+ void checkNumber(byte str, byte data){
   while(mode1){
    if(!mode2){
     
@@ -51,7 +50,7 @@ void receiveEvent(int howMany) {
             Serial.println("invalid");
             delay(1500);
             loop();
-            //cekKeamanan(str,data);
+            //checkNumber(str,data);
           }
         }
   }
@@ -59,6 +58,6 @@ void receiveEvent(int howMany) {
 
 // function that executes whenever data is requested from master
 void requestEvent() {
- byte nomorseri=EEPROM.read(0);
- Wire.write(nomorseri);  /*send string on request */
+ byte numberID=EEPROM.read(0);
+ Wire.write(numberID);  /*send string on request */
 }

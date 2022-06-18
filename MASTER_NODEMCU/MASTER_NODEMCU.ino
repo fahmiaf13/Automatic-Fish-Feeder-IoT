@@ -4,8 +4,8 @@
 #include <ESP8266HTTPClient.h>
 #include <ArduinoJson.h>
 
-const char* ssid = "Venus27";
-const char* password = "rumahmetro";
+const char* ssid = ""; //Your WiFi Name
+const char* password = ""; //Your Wifi Password
 
 void setup() {
   Serial.begin(115200);
@@ -34,7 +34,7 @@ void loop() {
     HTTPClient http;
     
     WiFiClient client;
-    http.begin(client,"https://fishfeeder.alamendah.id/kirimWaktu.php");
+    http.begin(client,"https://xxxx.id/xxxx.php"); //Get JSON API 
     int httpCode = http.GET();
 
     if (httpCode > 0) {
@@ -54,19 +54,14 @@ void loop() {
       Serial.println(id_mesin);     
 
        byte data = id_mesin;
- Wire.beginTransmission(8); /* begin with device address 8 */
- Wire.write(data);  /* sends hello string */
- Wire.endTransmission();    /* stop transmitting */
+       Wire.beginTransmission(8); /* begin with device address 8 */
+       Wire.write(data);          /* sends hello string */
+       Wire.endTransmission();    /* stop transmitting */
 
  Serial.println();
  delay(1000);
     }
-
     http.end();
-
   }
-
   delay(1000);
-  
-
 }
