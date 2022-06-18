@@ -1,5 +1,5 @@
 #include <Wire.h>
-//EXAMPLE HTTP REQUEST
+//HTTP REQUEST
 #include <ESP8266WiFi.h>
 #include <ESP8266HTTPClient.h>
 #include <ArduinoJson.h>
